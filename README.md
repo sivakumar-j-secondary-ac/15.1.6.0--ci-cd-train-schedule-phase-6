@@ -1,15 +1,13 @@
-# cicd-pipeline-train-schedule-autoscaling
+# In Kube master
 
-This is a simple train schedule app written using nodejs. It is intended to be used as a sample application for a series of hands-on learning activities.
-
-## Running the app
-
-You need a Java JDK 7 or later to run the build. You can run the build like this:
-
-    ./gradlew build
-
-You can run the app with:
-
-    ./gradlew npm_start
-
-Once it is running, you can access it in a browser at http://localhost:8080
+cd ~/
+git clone https://github.com/kubernetes-incubator/metrics-server.git
+cd metrics-server/
+git checkout ed0663b3b4ddbfab5afea166dfd68c677930d22e
+kubectl create -f deploy/1.8+/
+kubectl get --raw /apis/metrics.k8s.io/
+cd ~/
+git clone https://github.com/sivakumar-j-secondary-ac/15.1.6.0--ci-cd-train-schedule-phase-6.git
+cd cicd-pipeline-train-schedule-autoscaling/
+vi train-schedule-kube.yml
+kubectl apply -f train-schedule-kube.yml
